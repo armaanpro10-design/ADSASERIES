@@ -1,7 +1,5 @@
 # ADSASERIES
-You people gonna get raw and detail explanation of various DSA Codes or whatever you study. 
-Please excuse my messy handwriting.
-
+PLEASE EXCUSE MY MESSY HANDWRITING.
 # Welcome! 👋
 
 Thank you for visiting my detailed guide on the Merge Sort algorithm! I spent a lot of 
