@@ -74,3 +74,82 @@ int main(){
 //You can understand the change of condition by: frist we were pushing the element that were smaller, now after changing the condition we pushing the element that is larger. That's It. No Rocket Science.
 
 
+
+
+//I told you we gonna implement where the condition is gonna be the risky one.
+//Implementation where left != Right is used as base condition. 
+//Warning don't intentionall write left greater than right. The program gonna crash.
+//Above everything, the code runs fine, no error if values are contained right.
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int> &arr, int l, int m,int r, char ch){
+    vector<int> temp; // to hold the sorted value.
+    int i = l; int j = m+1; // as i told ya we be usin 2 pointers approach for this. refer to guide.
+
+    while(i <= m && j <= r){ // this loop will run until between the comparison of two sub-array
+        if(ch == 'A' or ch == 'a'){
+            if(arr[i]<=arr[j]){
+                temp.push_back(arr[i]);
+                i++;
+            }else{
+                temp.push_back(arr[j]);
+                j++;
+            }
+        }
+        else if(ch == 'D' || ch == 'd'){
+            if(arr[i]>=arr[j]){
+                temp.push_back(arr[i]);
+                i++;
+            }else{
+                temp.push_back(arr[j]);
+                j++;
+            }
+        }
+        else{
+            cout << "Not a valid order";
+            return;
+        }
+    }
+    while(i <= m){ // this loop runs when the right array has no element to compare to it will push all the array element into temporary
+        temp.push_back(arr[i]);
+        i++;
+    }
+    while(j <= r){// similary for this
+        temp.push_back(arr[j]);
+        j++;
+    }
+
+    for(int idx = 0; idx < temp.size(); idx++){
+        arr[idx + l] = temp[idx];
+    }
+}
+
+void mergesort(vector<int> &arr, int left, int right, char ch){
+    if(left != right){ //With the risky conditon. Though it works Fine.
+
+        int mid = left + (right - left)/2; //start from left, then adds the half of the distance
+
+        mergesort(arr, left, mid,ch); // left recursion
+        mergesort(arr, mid+1, right,ch); // right recursion
+
+        merge(arr, left, mid, right, ch); // as i told yaa, this runs when the lowest level to higher level, left and right recursion completes. refer to guide.
+    }
+}
+
+int main(){
+
+    vector<int> arr = {13, 9,6, 22,13,18, 24,90,56,48};
+    char ch; cin >> ch;
+
+    mergesort(arr, 0, arr.size() - 1,ch); // we have to make sure that we be passing the indices only, cause arr.size() = 10 wrote alone will return how many elements are in there in array not the last index. so arr.size() - 1 = 9, gives us the index of the last element.
+
+    for(int i = 0; i < arr.size(); i++){
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
