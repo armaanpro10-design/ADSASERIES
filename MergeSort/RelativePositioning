@@ -1,0 +1,7 @@
+I forgot to tell about relative positioning in explanation pdf. 
+Assume we have an array [5,2,6,9,3,9]
+Now what relative positioning guarantee is that, when two same elements are in an array.
+The element that appeared first in the array will be remain relatively first to the second appeared same element in the output array.
+Sometime the question comes which sorting algorithm preserves Relative positioning, so it's better to be prepared for that.
+to understand more, take a copy a pen and do the dry run on the above array, by writing first element with different colour. 
+The result will make you happy.
